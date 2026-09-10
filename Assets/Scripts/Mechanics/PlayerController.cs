@@ -174,6 +174,12 @@ namespace Platformer.Mechanics
             bool wantsToJump = jumpPressedThisFrame || jumpBufferCounter > 0f;
             bool canGroundOrCoyoteJump = IsGrounded || coyoteTimeCounter > 0f;
 
+            //CA:: I just want to enable the player to perform the 2nd jump when falling too.
+            if (velocity.y < 0 && jumpState == JumpState.Grounded)
+            {
+                jumpState = JumpState.InFlight;
+            }
+
             switch (jumpState)
             {
                 case JumpState.Grounded:

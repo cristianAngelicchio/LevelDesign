@@ -43,7 +43,7 @@ namespace Platformer.Gameplay
                     //CA: ACA ESTA!!! LA VARIABLE HARDCODEADA QUE TE HACE SALTAR!!
                     Schedule<EnemyDeath>().enemy = enemy;
                     enemy.control.GetComponent<Animator>().SetBool("death", true);
-                    player.Bounce(2);
+                    player.Bounce(4.5f);
                 }
             }
             else
