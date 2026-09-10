@@ -1,5 +1,6 @@
 using Platformer.Core;
 using Platformer.Mechanics;
+using UnityEngine;
 
 namespace Platformer.Gameplay
 {
@@ -13,8 +14,12 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
-            enemy._collider.enabled = false;
+            //CA: ADD ANYTHING YOU WANT TO HAPPEN WHEN THE ENEMY DIES
             enemy.control.enabled = false;
+            enemy.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            enemy.GetComponent<BoxCollider2D>().enabled = false;
+            //enemy._collider.enabled = false;
+            enemy.GetComponent<Rigidbody2D>().linearVelocityY = 0;
             if (enemy._audio && enemy.ouch)
                 enemy._audio.PlayOneShot(enemy.ouch);
         }

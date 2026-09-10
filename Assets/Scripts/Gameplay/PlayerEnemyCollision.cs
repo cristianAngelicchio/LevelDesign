@@ -40,7 +40,9 @@ namespace Platformer.Gameplay
                 }
                 else
                 {
+                    //CA: ACA ESTA!!! LA VARIABLE HARDCODEADA QUE TE HACE SALTAR!!
                     Schedule<EnemyDeath>().enemy = enemy;
+                    enemy.control.GetComponent<Animator>().SetBool("death", true);
                     player.Bounce(2);
                 }
             }
