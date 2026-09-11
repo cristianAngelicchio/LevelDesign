@@ -108,9 +108,6 @@ namespace Platformer.Mechanics
 
         protected override void ComputeVelocity()
         {
-            if (!verticalPatrol && isFlying)
-                Debug.Log(velocity.x);
-
             if (IsGrounded)
                 jumpsRemaining = extraJumpsAllowed; // reset extra jumps when touching the ground
 
