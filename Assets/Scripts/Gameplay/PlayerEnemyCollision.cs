@@ -40,15 +40,26 @@ namespace Platformer.Gameplay
                 }
                 else
                 {
-                    //CA: ACA ESTA!!! LA VARIABLE HARDCODEADA QUE TE HACE SALTAR!!
-                    Schedule<EnemyDeath>().enemy = enemy;
-                    enemy.control.GetComponent<Animator>().SetBool("death", true);
-                    player.Bounce(4.5f);
+                    //CA: If it's a saw, it kills the player instantly.
+                    if(enemy.IsSaw && !enemy.SawIsSlimed)
+                    {
+                        Schedule<PlayerDeath>();
+                    }
+                    else
+                    {
+                        if (!enemy.IsSaw)
+                        {
+                            Schedule<EnemyDeath>().enemy = enemy;
+                            enemy.control.GetComponent<Animator>().SetBool("death", true);
+                        }
+                        player.Bounce(4.5f);
+                    }
                 }
             }
             else
             {
-                Schedule<PlayerDeath>();
+                if (!enemy.SawIsSlimed)
+                    Schedule<PlayerDeath>();
             }
         }
     }

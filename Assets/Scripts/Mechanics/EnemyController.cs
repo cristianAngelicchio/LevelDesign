@@ -91,6 +91,10 @@ namespace Platformer.Mechanics
 
         public GameObject slimeCubePrefab = null;
 
+        //CA:: Added Saws
+        public bool IsSaw;
+        public bool SawIsSlimed;
+
         void Awake()
         {
             control = GetComponent<AnimationController>();
@@ -110,6 +114,21 @@ namespace Platformer.Mechanics
                 var ev = Schedule<PlayerEnemyCollision>();
                 ev.player = player;
                 ev.enemy = this;
+            }
+
+            //CA:: If instead, it collides with a SlimeBox then it checks if it should change statuses:
+            if (IsSaw && !SawIsSlimed && collision.gameObject.CompareTag("Pushable"))
+            {
+                SawIsSlimed = true;
+
+                Animator animator = GetComponent<Animator>();
+                if (animator != null)
+                {
+                    animator.SetBool("IsSlimed", true);
+                }
+                Destroy(collision.gameObject);
+
+                return;
             }
         }
 
