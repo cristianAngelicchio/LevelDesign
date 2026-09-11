@@ -130,7 +130,19 @@ namespace Platformer.Mechanics
                     mover = path.CreateMover(patrolSpeed);
                 }
 
-                control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+                Vector2 direction = mover.Position - (Vector2)transform.position;
+
+                if (control.isFlying && control.verticalPatrol)
+                {
+                    // Vertical flying patrol
+                    control.move.x = 0;
+                    control.move.y = Mathf.Clamp(direction.y, -1, 1);
+                }
+                else
+                {
+                    control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+                }
+
             }
 
             if (flipSpriteWithDirection && spriteRenderer != null && Mathf.Abs(control.move.x) > 0.01f)

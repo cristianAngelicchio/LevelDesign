@@ -107,13 +107,22 @@ namespace Platformer.Mechanics
             else
                 velocity += Physics2D.gravity * Time.deltaTime;
 
-            if (GetComponent<AnimationController>() != null)
+            //CA:: Cancel FALLING and enable vertical patrols
+            AnimationController animationController = GetComponent<AnimationController>();
+            bool isFlying = animationController != null && animationController.isFlying;
+            bool verticalPatrol = animationController != null && animationController.verticalPatrol;
+
+            if (isFlying)
             {
-                if (GetComponent<AnimationController>().isFlying)
+                velocity.y = 0;
+                if (verticalPatrol)
                 {
-                    velocity.y = 0;
+                    velocity.x = 0;
+                    velocity.y = targetVelocity.y;
                 }
             }
+            //-
+
 
             velocity.x = targetVelocity.x;
 

@@ -97,6 +97,7 @@ namespace Platformer.Mechanics
 
         //CA:: Added the option to fly.
         public bool isFlying;
+        public bool verticalPatrol;
 
         protected virtual void Awake()
         {
@@ -107,6 +108,9 @@ namespace Platformer.Mechanics
 
         protected override void ComputeVelocity()
         {
+            if (!verticalPatrol && isFlying)
+                Debug.Log(velocity.x);
+
             if (IsGrounded)
                 jumpsRemaining = extraJumpsAllowed; // reset extra jumps when touching the ground
 
