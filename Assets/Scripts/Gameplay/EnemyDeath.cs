@@ -18,6 +18,11 @@ namespace Platformer.Gameplay
             enemy.control.enabled = false;
             enemy.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             enemy.GetComponent<BoxCollider2D>().enabled = false;
+
+            //CA:: I Spawn a slimebox on death.
+            enemy.spawnSlimeCube();
+
+            //CA:: No longer disables the collider, instead it changes rigidbody and collisionboxes.
             //enemy._collider.enabled = false;
             enemy.GetComponent<Rigidbody2D>().linearVelocityY = 0;
             if (enemy._audio && enemy.ouch)

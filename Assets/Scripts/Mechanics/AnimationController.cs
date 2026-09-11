@@ -95,6 +95,9 @@ namespace Platformer.Mechanics
         Animator animator;
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+        //CA:: Added the option to fly.
+        public bool isFlying;
+
         protected virtual void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();

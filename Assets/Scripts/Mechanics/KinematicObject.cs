@@ -107,15 +107,31 @@ namespace Platformer.Mechanics
             else
                 velocity += Physics2D.gravity * Time.deltaTime;
 
+            if (GetComponent<AnimationController>() != null)
+            {
+                if (GetComponent<AnimationController>().isFlying)
+                {
+                    velocity.y = 0;
+                }
+            }
+
             velocity.x = targetVelocity.x;
 
             IsGrounded = false;
 
             var deltaPosition = velocity * Time.deltaTime;
+            Vector2 move;
 
-            var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
-
-            var move = moveAlongGround * deltaPosition.x;
+            //CA:: FLYING ENEMIES DON'T NEED GROUND, WHY TF DOES THIS EXIST?!
+            if (GetComponent<AnimationController>() != null && GetComponent<AnimationController>().isFlying)
+            {
+                 move = Vector2.right * deltaPosition.x;
+            }
+            else
+            {
+                var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+                move = moveAlongGround * deltaPosition.x;
+            }
 
             PerformMovement(move, false);
 
@@ -136,6 +152,23 @@ namespace Platformer.Mechanics
                 for (var i = 0; i < count; i++)
                 {
                     var currentNormal = hitBuffer[i].normal;
+
+                    //CA:: Added PUSH & BOUNCE
+                    if (hitBuffer[i].rigidbody != null)
+                    {
+                        Rigidbody2D hitBody = hitBuffer[i].rigidbody;
+                        if (hitBody.bodyType == RigidbodyType2D.Dynamic && hitBody.CompareTag("Pushable"))
+                        {
+                            // Push horizontally
+                            if (!yMovement)
+                            {
+                                hitBody.linearVelocity = new Vector2(
+                                    velocity.x,
+                                    hitBody.linearVelocity.y
+                                );
+                            }
+                        }
+                    }
 
                     //is this surface flat enough to land on?
                     if (currentNormal.y > minGroundNormalY)
@@ -170,9 +203,28 @@ namespace Platformer.Mechanics
                             velocity.x = 0;
                         }
                     }
+
                     //remove shellDistance from actual move distance.
                     var modifiedDistance = hitBuffer[i].distance - shellRadius;
                     distance = modifiedDistance < distance ? modifiedDistance : distance;
+
+                    //CA:: Added PUSH & BOUNCE
+                    if (hitBuffer[i].rigidbody != null)
+                    {
+                        Rigidbody2D hitBody = hitBuffer[i].rigidbody;
+                        if (hitBody.bodyType == RigidbodyType2D.Dynamic && hitBody.CompareTag("Pushable"))
+                        {
+                            // Bounce when falling onto the object
+                            if (yMovement)
+                            {
+                                if (transform.position.y > hitBody.position.y)
+                                {
+                                    hitBody.gameObject.GetComponent<Animator>().SetBool("Jumped Over", true);
+                                    Bounce(4.5f);
+                                }
+                            }
+                        }
+                    }
                 }
             }
             body.position = body.position + move.normalized * distance;

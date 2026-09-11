@@ -89,6 +89,8 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => _collider.bounds;
 
+        public GameObject slimeCubePrefab = null;
+
         void Awake()
         {
             control = GetComponent<AnimationController>();
@@ -168,6 +170,15 @@ namespace Platformer.Mechanics
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(transform.position, detectionRange);
             }
+        }
+
+        public void spawnSlimeCube()
+        {
+            Instantiate(
+                slimeCubePrefab,
+                transform.position,
+                Quaternion.identity
+            );
         }
     }
 }
