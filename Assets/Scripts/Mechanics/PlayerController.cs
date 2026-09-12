@@ -128,16 +128,24 @@ namespace Platformer.Mechanics
             Transform cameraPivot = transform.Find("Camera Pivot").transform;
             float cameraLookSpeedX = 2.5f;
             float cameraLookSpeedY = 10f;
-            Vector3 cameraNormalPosition = new Vector3(0, 0.25f, 0);
+            Vector3 cameraNormalPosition = new Vector3(0, 0.3f, 0);
             Vector3 cameraLookDownPosition = new Vector3(0, -1f, 0);
+            Vector3 cameraLookUpPosition = new Vector3(0, 0.85f, 0);
             bool lookingDown = Input.GetAxisRaw("Vertical") < 0;
+            bool lookingUp = Input.GetAxisRaw("Vertical") > 0;
 
-            Vector3 targetPosition = lookingDown ? cameraLookDownPosition : cameraNormalPosition;
+            Vector3 targetPosition;
+            if (lookingDown)
+                targetPosition = cameraLookDownPosition;
+            else if (lookingUp)
+                targetPosition = cameraLookUpPosition;
+            else
+                targetPosition = cameraNormalPosition;
 
             if (spriteRenderer.flipX)
-                targetPosition.x -= 0.75f;
+                targetPosition.x -= 0.5f;
             else
-                targetPosition.x += 0.75f;
+                targetPosition.x += 0.5f;
 
             float newX = Mathf.Lerp(
                 cameraPivot.localPosition.x,
