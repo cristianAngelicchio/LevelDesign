@@ -1,11 +1,10 @@
-﻿using Cinemachine;
-using Platformer.Core;
-using Platformer.Gameplay;
-using Platformer.Model;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
+using Platformer.Model;
+using Platformer.Core;
 
 namespace Platformer.Mechanics
 {
@@ -125,40 +124,6 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
-            //CA:: You can look down.
-            Transform cameraPivot = transform.Find("Pivot Camera").transform;
-            float cameraLookSpeedX = 2.5f;
-            float cameraLookSpeedY = 10f;
-            Vector3 cameraNormalPosition = new Vector3(0, 0.5f, 0);
-            Vector3 cameraLookDownPosition = new Vector3(0, -1f, 0);
-            bool lookingDown = Input.GetAxisRaw("Vertical") < 0;
-
-            Vector3 targetPosition = lookingDown ? cameraLookDownPosition : cameraNormalPosition;
-
-            if (spriteRenderer.flipX)
-                targetPosition.x -= 1f;
-            else
-                targetPosition.x += 1f;
-
-            float newX = Mathf.Lerp(
-                cameraPivot.localPosition.x,
-                targetPosition.x,
-                cameraLookSpeedX * Time.deltaTime
-            );
-
-            float newY = Mathf.Lerp(
-                cameraPivot.localPosition.y,
-                targetPosition.y,
-                cameraLookSpeedY * Time.deltaTime
-            );
-
-            cameraPivot.localPosition = new Vector3(
-                newX,
-                newY,
-                cameraPivot.localPosition.z
-            );
-            //-
-
             jumpPressedThisFrame = false;
 
             if (controlEnabled)
