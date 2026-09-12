@@ -129,7 +129,7 @@ namespace Platformer.Mechanics
             Transform cameraPivot = transform.Find("Pivot Camera").transform;
             float cameraLookSpeedX = 2.5f;
             float cameraLookSpeedY = 10f;
-            Vector3 cameraNormalPosition = new Vector3(0, 0.5f, 0);
+            Vector3 cameraNormalPosition = new Vector3(0, 0.25f, 0);
             Vector3 cameraLookDownPosition = new Vector3(0, -1f, 0);
             bool lookingDown = Input.GetAxisRaw("Vertical") < 0;
 
