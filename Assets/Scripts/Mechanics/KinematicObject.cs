@@ -39,6 +39,9 @@ namespace Platformer.Mechanics
         protected const float minMoveDistance = 0.001f;
         protected const float shellRadius = 0.01f;
 
+        //CA:: Knockback variables. (war crimes)
+        public bool externalVelocity = false;
+        protected float externalVelocityTimer = 0.25f;
 
         /// <summary>
         /// Bounce the object's vertical velocity.
@@ -123,8 +126,15 @@ namespace Platformer.Mechanics
             }
             //-
 
+            if (externalVelocity)
+            {
+                externalVelocityTimer -= Time.deltaTime;
 
-            velocity.x = targetVelocity.x;
+                if (externalVelocityTimer <= 0f)
+                    externalVelocity = false;
+            }
+            else
+                velocity.x = targetVelocity.x;
 
             IsGrounded = false;
 

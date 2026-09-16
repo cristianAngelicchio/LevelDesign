@@ -19,6 +19,7 @@ namespace Platformer.Gameplay
             var player = model.player;
             if (player.health.IsAlive)
             {
+                player.DeathKnockback();
                 player.health.Die();
                 //CA:: We keep it.
                 //model.virtualCamera.m_Follow = null;
@@ -30,7 +31,7 @@ namespace Platformer.Gameplay
                     player.audioSource.PlayOneShot(player.ouchAudio);
                 player.animator.SetTrigger("hurt");
                 player.animator.SetBool("dead", true);
-                Simulation.Schedule<PlayerSpawn>(2);
+                //Simulation.Schedule<PlayerSpawn>(2);
             }
         }
     }

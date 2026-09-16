@@ -316,6 +316,16 @@ namespace Platformer.Mechanics
             }
         }
 
+        //CA:: Added a small knockback on death.
+        public void DeathKnockback()
+        {
+            float direction = spriteRenderer.flipX ? 1f : -1f;
+
+            externalVelocity = true;
+            externalVelocityTimer = 0.25f;
+            velocity = new Vector2(direction * 0.5f, 1.5f);
+        }
+
         public enum JumpState
         {
             Grounded,
