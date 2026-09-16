@@ -239,7 +239,7 @@ namespace Platformer.Mechanics
                                 if (transform.position.y > hitBody.position.y)
                                 {
                                     hitBody.gameObject.GetComponent<Animator>().SetBool("Jumped Over", true);
-                                    Bounce(4.5f);
+                                    Bounce(3.65f);
                                 }
                             }
                         }

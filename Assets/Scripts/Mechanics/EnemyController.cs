@@ -90,6 +90,8 @@ namespace Platformer.Mechanics
         public Bounds Bounds => _collider.bounds;
 
         public GameObject slimeCubePrefab = null;
+        //CA:: We keep track of the spawnedSlimeBox
+        private GameObject spawnedSlimeCube;
 
         //CA:: Added Saws
         public bool IsSaw;
@@ -207,7 +209,7 @@ namespace Platformer.Mechanics
 
         public void spawnSlimeCube()
         {
-            Instantiate(
+            spawnedSlimeCube = Instantiate(
                 slimeCubePrefab,
                 transform.position,
                 Quaternion.identity
@@ -219,6 +221,34 @@ namespace Platformer.Mechanics
             control.gravityModifier = 1f;
             control.isFlying = false;
             GetComponent<Animator>().SetBool("IsDead", true);
+        }
+
+        public void ResetEnemy()
+        {
+            if (!isBoss && !IsSaw)
+            {
+                control.enabled = true;
+                //GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                gameObject.SetActive(true);
+                GetComponent<BoxCollider2D>().enabled = true;
+
+                //CA:: I kill the spawned slimebox
+                if (spawnedSlimeCube != null)
+                {
+                    Destroy(spawnedSlimeCube);
+                    spawnedSlimeCube = null;
+                }
+            }
+            else if(IsSaw && SawIsSlimed)
+            {
+                SawIsSlimed = false;
+
+                Animator animator = GetComponent<Animator>();
+                if (animator != null)
+                {
+                    animator.SetBool("IsSlimed", false);
+                }
+            }
         }
     }
 }

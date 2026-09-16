@@ -162,7 +162,8 @@ MonoBehaviour:
   minGroundNormalY: 0.65
   gravityModifier: 1
   velocity: {x: 0, y: 0}
-  maxSpeed: 15
+  externalVelocity: 0
+  maxSpeed: 10
   useSmoothAcceleration: 0
   acceleration: 40
   deceleration: 45
@@ -204,6 +205,9 @@ MonoBehaviour:
   showDebugGizmos: 1
   slimeCubePrefab: {fileID: 5927028780601660725, guid: f171d89990e4b754e8dde419dd675bd8,
     type: 3}
+  IsSaw: 0
+  SawIsSlimed: 0
+  isBoss: 0
 --- !u!82 &5655324689208727277
 AudioSource:
   m_ObjectHideFlags: 0

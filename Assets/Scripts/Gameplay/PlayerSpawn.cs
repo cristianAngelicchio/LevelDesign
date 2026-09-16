@@ -1,6 +1,7 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 using Platformer.Model;
+using UnityEngine;
 
 namespace Platformer.Gameplay
 {
@@ -26,6 +27,32 @@ namespace Platformer.Gameplay
             //model.virtualCamera.m_Follow = player.transform;
             //model.virtualCamera.m_LookAt = player.transform;
             Simulation.Schedule<EnablePlayerInput>(0.3f);
+
+            EnemyController[] enemies = Object.FindObjectsByType<EnemyController>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None
+            );
+
+            foreach (EnemyController enemy in enemies)
+            {
+                if (!enemy.gameObject.activeSelf || (enemy.IsSaw && enemy.SawIsSlimed))
+                {
+                    enemy.ResetEnemy();
+                }
+            }
+
+            Spikes[] spikes = Object.FindObjectsByType<Spikes>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None
+            );
+
+            foreach (Spikes spike in spikes)
+            {
+                if (spike.SpikeIsSlimed)
+                {
+                    spike.ResetSpike();
+                }
+            }
         }
     }
 }

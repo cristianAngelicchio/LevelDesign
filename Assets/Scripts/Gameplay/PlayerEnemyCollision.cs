@@ -58,7 +58,7 @@ namespace Platformer.Gameplay
                         }
 
                         if (!enemy.isBoss)
-                            player.Bounce(4.5f);
+                            player.Bounce(3.65f);
                         else
                             player.Bounce(2f);
                     }

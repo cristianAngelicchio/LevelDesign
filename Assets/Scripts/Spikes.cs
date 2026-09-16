@@ -18,7 +18,7 @@ public class Spikes : MonoBehaviour
         else if(SpikeIsSlimed)
         {
             GetComponent<Animator>().SetTrigger("Bounce");
-            p.Bounce(4.5f);
+            p.Bounce(3.65f);
         }
 
 
@@ -53,6 +53,18 @@ public class Spikes : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("IsSlimed", true);
+        }
+    }
+
+    public void ResetSpike()
+    {
+        SpikeIsSlimed = false;
+
+        Animator animator = GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            animator.SetBool("IsSlimed", false);
         }
     }
 }
