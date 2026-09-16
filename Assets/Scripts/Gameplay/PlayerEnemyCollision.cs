@@ -52,6 +52,11 @@ namespace Platformer.Gameplay
                             Schedule<EnemyDeath>().enemy = enemy;
                             enemy.control.GetComponent<Animator>().SetBool("death", true);
                         }
+                        else
+                        {
+                            enemy.GetComponent<Animator>().SetTrigger("Bounce");
+                        }
+
                         player.Bounce(4.5f);
                     }
                 }

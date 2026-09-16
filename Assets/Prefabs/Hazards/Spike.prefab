@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1467497007342292584}
   - component: {fileID: 1053400272201657491}
   - component: {fileID: 7088399636748210115}
+  - component: {fileID: 3918955682329828384}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -159,6 +160,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1b304e3d156be469a4e4ebbfd7add7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  SpikeIsSlimed: 0
+--- !u!95 &3918955682329828384
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636081983443563695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 75938c4ee07549043bb977ac0c9d5a7c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5187642119967450947
 GameObject:
   m_ObjectHideFlags: 0
