@@ -95,6 +95,8 @@ namespace Platformer.Mechanics
         public bool IsSaw;
         public bool SawIsSlimed;
 
+        public bool isBoss = false;
+
         void Awake()
         {
             control = GetComponent<AnimationController>();
@@ -210,6 +212,13 @@ namespace Platformer.Mechanics
                 transform.position,
                 Quaternion.identity
             );
+        }
+
+        public void ActivateBoss()
+        {
+            control.gravityModifier = 1f;
+            control.isFlying = false;
+            GetComponent<Animator>().SetBool("IsDead", true);
         }
     }
 }

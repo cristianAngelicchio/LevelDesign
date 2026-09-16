@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9d7ccad4e0783644580da672b1c55430
+guid: a8b029f594b24c049adad32b81610f61
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9208745162221874081
-    second: Bridge Deco_0
+      213: 1068644781818113023
+    second: RejaB_Block_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bridge Deco_0
+      name: RejaB_Block_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 20
-        height: 13
+        y: 32
+        width: 64
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1abe45d5fe80ccf70800000000000000
-      internalID: 9208745162221874081
+      spriteID: ffbe75364c694de00800000000000000
+      internalID: 1068644781818113023
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bridge Deco_0: 9208745162221874081
+      RejaB_Block_0: 1068644781818113023
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

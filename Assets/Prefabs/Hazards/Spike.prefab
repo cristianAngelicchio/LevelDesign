@@ -141,12 +141,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.008235255, y: 0.071874104}
-      - {x: -0.050451357, y: 0.0107387435}
-      - {x: -0.08, y: -0.08}
-      - {x: 0.08, y: -0.08}
-      - {x: 0.053406313, y: 0.010287376}
-      - {x: 0.013009578, y: 0.071135476}
+    - - {x: -0.01, y: 0.07}
+      - {x: -0.045, y: 0}
+      - {x: -0.06, y: -0.08}
+      - {x: 0.06, y: -0.08}
+      - {x: 0.045, y: 0}
+      - {x: 0.01, y: 0.07}
   m_UseDelaunayMesh: 1
 --- !u!114 &7088399636748210115
 MonoBehaviour:
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   SpikeIsSlimed: 0
+  neighbouringSpikes: []
 --- !u!95 &3918955682329828384
 Animator:
   serializedVersion: 7

@@ -57,7 +57,10 @@ namespace Platformer.Gameplay
                             enemy.GetComponent<Animator>().SetTrigger("Bounce");
                         }
 
-                        player.Bounce(4.5f);
+                        if (!enemy.isBoss)
+                            player.Bounce(4.5f);
+                        else
+                            player.Bounce(2f);
                     }
                 }
             }

@@ -14,19 +14,24 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
-            //CA: ADD ANYTHING YOU WANT TO HAPPEN WHEN THE ENEMY DIES
-            enemy.control.enabled = false;
-            enemy.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            enemy.GetComponent<BoxCollider2D>().enabled = false;
+            if (!enemy.isBoss)
+            {
+                //CA: ADD ANYTHING YOU WANT TO HAPPEN WHEN THE ENEMY DIES
+                enemy.control.enabled = false;
+                enemy.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                enemy.GetComponent<BoxCollider2D>().enabled = false;
 
-            //CA:: I Spawn a slimebox on death.
-            enemy.spawnSlimeCube();
+                //CA:: I Spawn a slimebox on death.
+                enemy.spawnSlimeCube();
 
-            //CA:: No longer disables the collider, instead it changes rigidbody and collisionboxes.
-            //enemy._collider.enabled = false;
-            enemy.GetComponent<Rigidbody2D>().linearVelocityY = 0;
-            if (enemy._audio && enemy.ouch)
-                enemy._audio.PlayOneShot(enemy.ouch);
+                //CA:: No longer disables the collider, instead it changes rigidbody and collisionboxes.
+                //enemy._collider.enabled = false;
+                enemy.GetComponent<Rigidbody2D>().linearVelocityY = 0;
+                if (enemy._audio && enemy.ouch)
+                    enemy._audio.PlayOneShot(enemy.ouch);
+            }
+            else
+                enemy.ActivateBoss();
         }
     }
 }
