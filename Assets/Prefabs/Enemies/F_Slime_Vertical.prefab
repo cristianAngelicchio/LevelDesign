@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3771319329479338674}
   m_Layer: 13
   m_Name: F_Slime_Vertical
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

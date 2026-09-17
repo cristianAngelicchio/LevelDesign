@@ -28,16 +28,6 @@ public class EscapeTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boss"))
         {
-            foreach (GameObject obj in objectsToDeActivate)
-            {
-                obj.SetActive(false);
-            }
-
-            foreach (GameObject obj in objectsToActivate)
-            {
-                obj.SetActive(true);
-            }
-
             Destroy(collision.gameObject);
 
             StartCoroutine(PlayCinematic());
@@ -48,6 +38,16 @@ public class EscapeTrigger : MonoBehaviour
 
     IEnumerator PlayCinematic()
     {
+        foreach (GameObject obj in objectsToDeActivate)
+        {
+            obj.SetActive(false);
+        }
+
+        foreach (GameObject obj in objectsToActivate)
+        {
+            obj.SetActive(true);
+        }
+
         // 1. Disable player
         player.controlEnabled = false;
 
