@@ -163,7 +163,7 @@ MonoBehaviour:
   gravityModifier: 1
   velocity: {x: 0, y: 0}
   externalVelocity: 0
-  maxSpeed: 15
+  maxSpeed: 10
   useSmoothAcceleration: 0
   acceleration: 40
   deceleration: 45
@@ -207,6 +207,7 @@ MonoBehaviour:
     type: 3}
   IsSaw: 1
   SawIsSlimed: 0
+  isBoss: 0
 --- !u!82 &7275328795093387353
 AudioSource:
   m_ObjectHideFlags: 0

@@ -36,6 +36,18 @@ public class BlackScreen : MonoBehaviour
         yield return StartCoroutine(Fade(0f, fadeFromBlackTime));
     }
 
+    public void StartLevelEndTransition()
+    {
+        StartCoroutine(LevelEndTransition());
+    }
+
+    IEnumerator LevelEndTransition()
+    {
+        yield return StartCoroutine(Fade(1f, 2f));
+
+        // Stay black.
+    }
+
     IEnumerator Fade(float targetAlpha, float duration)
     {
         Color color = image.color;

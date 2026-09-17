@@ -53,6 +53,13 @@ namespace Platformer.Gameplay
                     spike.ResetSpike();
                 }
             }
+
+            RisingWater water = Object.FindFirstObjectByType<RisingWater>();
+
+            if (water != null)
+            {
+                water.ResetWater();
+            }
         }
     }
 }
