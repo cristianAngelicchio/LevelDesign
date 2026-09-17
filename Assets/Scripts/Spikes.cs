@@ -15,7 +15,7 @@ public class Spikes : MonoBehaviour
         {
             var ev = Schedule<PlayerDeath>(0);
         }
-        else if(SpikeIsSlimed)
+        else if(SpikeIsSlimed && p != null)
         {
             GetComponent<Animator>().SetTrigger("Bounce");
             p.Bounce(3.65f);
