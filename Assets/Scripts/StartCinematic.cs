@@ -22,6 +22,8 @@ public class IntroSequence : MonoBehaviour
         // Make sure the player can't move during the intro.
         player.controlEnabled = false;
 
+        yield return new WaitForSeconds(1.5f);
+
         // Move camera confiner down.
         Vector3 startPosition = cameraConfiner.position;
         Vector3 targetPosition = startPosition;
