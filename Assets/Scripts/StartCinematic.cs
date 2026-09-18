@@ -49,11 +49,12 @@ public class IntroSequence : MonoBehaviour
         npc.StartRunning();
 
         // Wait for the NPC's intro movement to finish.
-        yield return new WaitForSeconds(1f + npc.runDuration);
+        yield return new WaitForSeconds(1.5f + npc.runDuration);
 
         // Wake player up.
         player.GetComponent<Animator>().SetBool("Spawn", true);
         yield return new WaitForSeconds(0.75f);
         player.controlEnabled = true;
+        //gameObject.SetActive(false);
     }
 }

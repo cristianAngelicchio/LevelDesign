@@ -1,3 +1,4 @@
+using Cinemachine;
 using Platformer.Mechanics;
 using System.Collections;
 using UnityEngine;
@@ -16,6 +17,9 @@ public class EscapeTrigger : MonoBehaviour
 
     public GameObject cameraPivot;
 
+    public CinemachineConfiner confiner;
+    public PolygonCollider2D finalConfiner;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -29,6 +33,9 @@ public class EscapeTrigger : MonoBehaviour
         if (collision.gameObject.CompareTag("Boss"))
         {
             Destroy(collision.gameObject);
+
+            confiner.m_BoundingShape2D = finalConfiner;
+            confiner.m_Damping = 0;
 
             StartCoroutine(PlayCinematic());
             //gameObject.SetActive(false);
@@ -55,16 +62,16 @@ public class EscapeTrigger : MonoBehaviour
 
         // 3. Start screen shake
         originalPosition = cameraPivot.transform.localPosition;
-        StartCoroutine(Shake(1f, 0.5f));
+        StartCoroutine(Shake(2.5f, 0.5f));
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         // 4. Speed up the two animations
         object1Animator.SetTrigger("SetActive");
         object2Animator.SetTrigger("SetActive");
 
         // 5. Wait for the cinematic
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         // 6. Start the water
         water.GetComponent<RisingWater>().StartRising();

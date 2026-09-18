@@ -17,6 +17,8 @@ public class NPCController : MonoBehaviour
     private bool isRunning = false;
     private int triggerInt = 0;
 
+    public GameObject enemyToActivate;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -39,10 +41,16 @@ public class NPCController : MonoBehaviour
             {
                 triggerInt = 3;
 
+
                 if (nextPosition != null && nextPosition.Length > 1)
                 {
                     spriteRenderer.flipX = false;
                     transform.position = nextPosition[1].position;
+                }
+
+                if (enemyToActivate != null)
+                {
+                    enemyToActivate.SetActive(true);
                 }
             }
         }
@@ -75,6 +83,7 @@ public class NPCController : MonoBehaviour
 
     private IEnumerator JumpToPosition(Vector3 targetPosition)
     {
+        animator.SetBool("Jump", true);
         Vector3 startPosition = transform.position;
 
         float timer = 0f;
@@ -95,6 +104,7 @@ public class NPCController : MonoBehaviour
         }
 
         transform.position = targetPosition;
+        animator.SetBool("Jump", false);
     }
 
     public void StartRunning()
