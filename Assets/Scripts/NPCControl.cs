@@ -71,6 +71,8 @@ public class NPCController : MonoBehaviour
         // Jump toward the first wall
         yield return StartCoroutine(JumpToPosition(nextPosition[2].position));
 
+        yield return new WaitForSeconds(0.25f);
+
         // Face the other direction
         spriteRenderer.flipX = !spriteRenderer.flipX;
 

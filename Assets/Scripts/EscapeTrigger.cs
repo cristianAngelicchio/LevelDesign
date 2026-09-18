@@ -62,9 +62,9 @@ public class EscapeTrigger : MonoBehaviour
 
         // 3. Start screen shake
         originalPosition = cameraPivot.transform.localPosition;
-        StartCoroutine(Shake(2.5f, 0.5f));
+        StartCoroutine(Shake(2f, 0.5f));
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
 
         // 4. Speed up the two animations
         object1Animator.SetTrigger("SetActive");
